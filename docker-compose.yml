@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+    sql-server:
+        container_name: sql-server
+        image: mcr.microsoft.com/mssql/server:2022-latest
+        restart: always
+        environment:
+            ACCEPT_EULA: "Y"
+            SA_PASSWORD: "Jko3va-D9821jhsvGD"
+            MSSQL_PID: "Developer"
+        ports:
+            - 1433:1433
+        volumes:
+            - sqlserver_volume:/var/opt/mssql
+        networks:
+            - sqlserver_network
+networks:
+    sqlserver_network:
+        driver: bridge
+volumes:
+    sqlserver_volume:
